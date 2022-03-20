@@ -10,9 +10,10 @@ class Product extends Model
     use HasFactory;
 
     // la propiedad $guarded hace el efecto contrario a $fillable
+    // que campos no quiero que asigne a la asignaciones masiva
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    // relación uno a muchos
+    // relación uno a muchos products y sizes
     public function sizes(){
         return $this->hasMany(Size::class);
     }
