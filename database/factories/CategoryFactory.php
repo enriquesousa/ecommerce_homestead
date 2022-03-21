@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'image' => 'posts-images/' . $this->faker->image('public/storage/posts-images', 640, 480, null, false), // con false me regresa solo: imagen.jpg
+            'image' => 'products/' . $this->faker->image('public/storage/products', 640, 480, null, false), // con false me regresa solo: imagen.jpg
         ];
     }
 }
