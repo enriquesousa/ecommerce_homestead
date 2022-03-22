@@ -15,9 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Storage::deleteDirectory('public/products'); // borrar la carpeta por si ya existía
-        Storage::makeDirectory('public/products'); // crear la carpeta /storage/app/public/products
+        Storage::deleteDirectory('public/categories'); 
+        Storage::deleteDirectory('public/subcategories');
+
+        Storage::makeDirectory('public/categories'); 
+        Storage::makeDirectory('public/subcategories');
+
         $this->call(UserSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(SubcategorySeeder::class);
+
     }
 }
