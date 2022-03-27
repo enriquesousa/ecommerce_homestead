@@ -4,5 +4,8 @@
     "cSpell.words": [
         "imageable",
         "polimórfica"
+    ],
+    "cSpell.enableFiletypes": [
+        "blade"
     ]
 }
