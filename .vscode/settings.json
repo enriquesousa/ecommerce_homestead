@@ -2,8 +2,10 @@
     "workbench.colorTheme": "Community Material Theme High Contrast",
     "cSpell.language": "en,es",
     "cSpell.words": [
+        "fontawesome",
         "imageable",
-        "polimórfica"
+        "polimórfica",
+        "stylesheet"
     ],
     "cSpell.enableFiletypes": [
         "blade"
