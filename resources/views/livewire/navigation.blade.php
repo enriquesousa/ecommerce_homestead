@@ -17,6 +17,10 @@
 
         @livewire('search')
 
+        {{-- si no le pasamos el valor de size, en resources/views/components/search.blade.php ya le dimos un valor por default --}}
+        {{-- <x-search size="40" color="orange" /> --}}
+        {{-- pasamos este componente a resources/views/livewire/search.blade.php --}}
+
     </div>
 </header>
 
