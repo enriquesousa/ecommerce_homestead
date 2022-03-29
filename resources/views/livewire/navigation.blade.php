@@ -21,8 +21,8 @@
         {{-- <x-search size="40" color="orange" /> --}}
         {{-- pasamos este componente a resources/views/livewire/search.blade.php --}}
 
-        <!-- Settings Dropdown -->
-        <div class="ml-3 relative">
+        <!-- Settings Avatar Dropdown -->
+        <div class="mx-3 relative">
             
             @auth
                 <x-jet-dropdown align="right" width="48">
@@ -84,6 +84,12 @@
             @endauth
 
         </div>
+
+        {{-- Cart Dropdown  --}}
+        @livewire('dropdown-cart')        
+
+
+
 
     </div>
 </header>
