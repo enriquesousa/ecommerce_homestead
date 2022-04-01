@@ -1,21 +1,9 @@
-<style>
-    #navigation-menu{
-        height: calc(100vh - 4rem);
-    }
-
-    /* para desplegar el submenu */
-    .navigation-link:hover .navigation-submenu {
-        display: block !important;
-    }
-</style>
-
-
 {{-- barra de navegación principal, para que quede pegada al top usamos sticky top-0 --}}
-<header class="bg-gray-600 sticky top-0">
+<header class="bg-gray-600 sticky top-0" x-data="dropdown()">
 
     <div class="container flex items-center h-16">
 
-        <a class="flex flex-col items-center justify-center px-4 bg-white bg-opacity-25 text-white cursor-pointer font-semibold h-16">
+        <a x-on:click="show()" class="flex flex-col items-center justify-center px-4 bg-white bg-opacity-25 text-white cursor-pointer font-semibold h-16">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -102,14 +90,13 @@
         {{-- Cart Dropdown  --}}
         @livewire('dropdown-cart')        
 
-
-
-
     </div>
 
-    <nav id="navigation-menu" class="bg-gray-700 bg-opacity-25 w-full absolute">
+    {{-- menu --}}
+    <nav id="navigation-menu" x-cloak x-show="open" class="bg-gray-700 bg-opacity-25 w-full absolute">
+ 
         <div class="container h-full">
-            <div class="grid grid-cols-4 h-full relative">
+            <div x-on:click.away="close()" class="grid grid-cols-4 h-full relative">
 
                 {{-- Este ul ocupa una columna --}}
                 <ul class="bg-white">
@@ -133,8 +120,8 @@
                         </li>
                     @endforeach
                 </ul>
-
                 {{-- Este div ocupa 3 columnas --}}
+
                 <div class="col-span-3 bg-gray-100">
 
                     {{-- con : antes de la variable le decimos que lo que queremos pasar es un objeto --}}
@@ -145,6 +132,7 @@
 
             </div>
         </div>
+
     </nav>
 
 </header>

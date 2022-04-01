@@ -34,5 +34,32 @@
         @stack('modals')
 
         @livewireScripts
+
+        <script>
+            function dropdown(){
+                return {
+        
+                    open: false,
+                    show(){
+                        if(this.open){
+                            // se cierra la ventana modal del menu
+                            this.open = false;
+                            document.getElementsByTagName('html')[0].style.overflow = 'auto'
+                        }else{
+                            // se abre la ventana modal del menu
+                            this.open = true;
+                            // deshabilitar el scroll
+                            document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+                        }
+                    },
+                    close(){
+                        // para que reaparecer el scroll si cerramos menu con click away
+                        this.open = false;
+                        document.getElementsByTagName('html')[0].style.overflow = 'auto'
+                    }
+                }
+            }
+        </script>
+        
     </body>
 </html>
