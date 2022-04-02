@@ -159,6 +159,9 @@
             </ul>
 
             <p class="text-gray-500 px-6 my-2">USUARIOS</p>
+
+            @livewire('cart-mobil')
+
             @auth
 
                 {{-- Perfil --}}
@@ -204,7 +207,6 @@
                 </a>
 
             @endauth
-
 
         </div>
 
