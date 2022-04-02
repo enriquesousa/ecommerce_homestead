@@ -39,7 +39,7 @@
             function dropdown(){
                 return {
         
-                    open: true,
+                    open: false,
                     show(){
                         if(this.open){
                             // se cierra la ventana modal del menu
