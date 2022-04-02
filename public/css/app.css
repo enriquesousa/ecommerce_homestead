@@ -994,6 +994,9 @@ select {
 .z-50 {
   z-index: 50;
 }
+.order-last {
+  order: 9999;
+}
 .col-span-6 {
   grid-column: span 6 / span 6;
 }
@@ -1007,6 +1010,18 @@ select {
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
+}
+.mx-6 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -2240,6 +2255,10 @@ select {
 }
 @media (min-width: 768px) {
 
+  .md\:order-first {
+    order: -9999;
+  }
+
   .md\:col-span-2 {
     grid-column: span 2 / span 2;
   }
@@ -2248,8 +2267,17 @@ select {
     grid-column: span 1 / span 1;
   }
 
+  .md\:mx-4 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
   .md\:mt-0 {
     margin-top: 0px;
+  }
+
+  .md\:block {
+    display: block;
   }
 
   .md\:grid {
@@ -2264,6 +2292,10 @@ select {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:justify-start {
+    justify-content: flex-start;
+  }
+
   .md\:gap-6 {
     gap: 1.5rem;
   }
@@ -2274,6 +2306,11 @@ select {
 
   .md\:border-l {
     border-left-width: 1px;
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 @media (min-width: 1024px) {

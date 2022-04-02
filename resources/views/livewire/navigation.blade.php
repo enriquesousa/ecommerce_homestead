@@ -1,30 +1,30 @@
 {{-- barra de navegación principal, para que quede pegada al top usamos sticky top-0 --}}
 <header class="bg-gray-600 sticky top-0" x-data="dropdown()">
 
-    <div class="container flex items-center h-16">
+    <div class="container flex items-center h-16 justify-between md:justify-start">
 
-        <a :class="{'bg-opacity-100 text-orange-500' : open}" x-on:click="show()" class="flex flex-col items-center justify-center px-4 bg-white bg-opacity-25 text-white cursor-pointer font-semibold h-16">
+        {{-- botón de menu categorías --}}
+        <a :class="{'bg-opacity-100 text-orange-500' : open}" x-on:click="show()" class="flex flex-col items-center justify-center order-last md:order-first px-6 md:mx-4 bg-white bg-opacity-25 text-white cursor-pointer font-semibold h-16">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
 
-            <span class="text-sm">
+            <span class="text-sm hidden md:block">
                 Categorías
             </span>
         </a>
 
-        <a href="/" class="ml-4">
+        <a href="/" class="mx-4">
             <x-jet-application-mark class="block h-9 w-auto" />
         </a>
 
-        @livewire('search')
-
-        {{-- si no le pasamos el valor de size, en resources/views/components/search.blade.php ya le dimos un valor por default --}}
-        {{-- <x-search size="40" color="orange" /> --}}
-        {{-- pasamos este componente a resources/views/livewire/search.blade.php --}}
+        {{-- Barra de búsqueda --}}
+        <div class="flex-1 hidden md:block">
+            @livewire('search')
+        </div>
 
         <!-- Settings Avatar Dropdown -->
-        <div class="mx-3 relative">
+        <div class="mx-3 relative hidden md:block">
             
             @auth
                 <x-jet-dropdown align="right" width="48">
@@ -88,7 +88,9 @@
         </div>
 
         {{-- Cart Dropdown  --}}
-        @livewire('dropdown-cart')        
+        <div class="hidden md:block">
+            @livewire('dropdown-cart')        
+        </div>
 
     </div>
 
