@@ -4,7 +4,7 @@
     <div class="container flex items-center h-16 justify-between md:justify-start">
 
         {{-- botón de menu categorías --}}
-        <a :class="{'bg-opacity-100 text-orange-500' : open}" x-on:click="show()" class="flex flex-col items-center justify-center order-last md:order-first px-6 md:mx-4 bg-white bg-opacity-25 text-white cursor-pointer font-semibold h-16">
+        <a :class="{'bg-opacity-100 text-orange-500' : open}" x-on:click="show()" class="flex flex-col items-center justify-center order-last md:order-first px-6 md:px-4 bg-white bg-opacity-25 text-white cursor-pointer font-semibold h-16">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -96,8 +96,9 @@
 
     {{-- menu --}}
     <nav id="navigation-menu" x-cloak x-show="open" class="bg-gray-700 bg-opacity-25 w-full absolute">
- 
-        <div class="container h-full">
+        
+        {{-- menu parar computadora --}}
+        <div class="container h-full hidden md:block">
             <div x-on:click.away="close()" class="grid grid-cols-4 h-full relative">
 
                 {{-- Este ul ocupa una columna --}}
@@ -133,6 +134,28 @@
                 </div>
 
             </div>
+        </div>
+
+        {{-- menu para celular --}}
+        <div class="bg-white h-full overflow-y-auto">
+
+            <div class="container bg-gray-200 py-3 mb-2">
+                @livewire('search')
+            </div>
+
+            <ul>
+                @foreach ($categories as $category)
+                    <li class="text-gray-500 hover:bg-orange-500 hover:text-white">
+
+                        <a href="" class="py-2 px-4 text-sm flex items-center">
+                            <span class="flex justify-center w-9">
+                                {!! $category->icon !!}
+                            </span>
+                            {{ $category->name }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
         </div>
 
     </nav>
