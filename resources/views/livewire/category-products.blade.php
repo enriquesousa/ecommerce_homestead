@@ -2,8 +2,7 @@
     
     @if (count($products))
         <div class="glider-contain">
-
-            <ul class="glider">
+            <ul class="glider-{{ $category->id }}">
     
                 {{-- acceder al modelo category y recuperar la relación con products --}}
                 @foreach ($products as $product)
@@ -38,7 +37,6 @@
                 @endforeach
 
             </ul>
-            
             <button aria-label="Previous" class="glider-prev">«</button>
             <button aria-label="Next" class="glider-next">»</button>
             <div role="tablist" class="dots"></div>
@@ -48,7 +46,6 @@
         <div class="mb-4 h-48 flex justify-center items-center bg-white shadow-xl border border-gray-100 rounded-lg">
             <div class="rounded animate-spin ease duration-300 w-10 h-10 border-2 border-indigo-500"></div>
         </div>
-
     @endif
 
 </div>
