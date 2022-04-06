@@ -8,6 +8,7 @@
         "bmewburn.vscode-intelephense-client",
         "streetsidesoftware.code-spell-checker-spanish",
         "bradlc.vscode-tailwindcss",
-        "equinusocio.vsc-material-theme-icons"
+        "equinusocio.vsc-material-theme-icons",
+        "austenc.laravel-blade-spacer"
     ]
 }
