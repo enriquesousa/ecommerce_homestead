@@ -9,6 +9,7 @@
         "streetsidesoftware.code-spell-checker-spanish",
         "bradlc.vscode-tailwindcss",
         "equinusocio.vsc-material-theme-icons",
-        "austenc.laravel-blade-spacer"
+        "austenc.laravel-blade-spacer",
+        "cierra.livewire-vscode"
     ]
 }
