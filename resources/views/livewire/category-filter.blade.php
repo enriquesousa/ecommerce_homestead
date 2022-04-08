@@ -14,7 +14,8 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-5 gap-6">
+    {{-- Div de Menu y Productos --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
 
         {{-- Donde va estar el menu de las Subcategorías y menu de las Marcas --}}
         <aside>
@@ -48,13 +49,12 @@
 
         {{-- Toma las 4 de las 5 columnas del grid, para incluir los productos --}}
         {{-- usar 'gap-6' para separar los productos --}}
-        <div class="col-span-4">
+        <div class="md:col-span-2 lg:col-span-4">
 
             {{-- vista grid o lista --}}
             @if ($view == 'grid')
-                <ul class="grid grid-cols-4 gap-6">
+                <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach ($products as $product)
-                        
                         {{-- Tarjeta de cada producto                 --}}
                         <li class="bg-white rounded-lg shadow">
 
@@ -82,9 +82,7 @@
                             </article>
                             
                         </li>
-
                     @endforeach
-
                 </ul>
             @else
                 <ul>
