@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Community Material Theme High Contrast",
+    "workbench.colorTheme": "Visual Studio Dark",
     "cSpell.language": "en,es",
     "cSpell.words": [
         "carrito",
@@ -11,6 +11,7 @@
         "polimórfica",
         "semibold",
         "stylesheet",
+        "Subcategoría",
         "Subcategorías"
     ],
     "cSpell.enableFiletypes": [

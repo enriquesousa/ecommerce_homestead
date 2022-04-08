@@ -81,6 +81,7 @@
                     </li>
 
                 @endforeach
+
             </ul>
 
             {{-- para recuperar los links de la pagination --}}
@@ -92,3 +93,4 @@
     </div>
 
 </div>
+
