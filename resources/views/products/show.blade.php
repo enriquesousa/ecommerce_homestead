@@ -31,6 +31,7 @@
 
                 <p class="text-2xl font-semibold text-gray-700 my-4">USD$ {{ $product->price }}</p>
 
+                {{-- tarjeta Se hacen envíos a ... --}}
                 <div class="bg-white rounded-lg shadow-lg mb-6">
                     <div class="p-4 flex items-center">
                         <span class="flex items-center justify-center h-10 w-10 rounded-full bg-green-600">
@@ -43,6 +44,14 @@
                         </div>
                     </div>
                 </div>
+
+                @if ($product->subcategory->size)
+                    @livewire('add-cart-item-size', ['product' => $product])
+                @elseif($product->subcategory->color)
+                    @livewire('add-cart-item-color', ['product' => $product])
+                @else
+                    @livewire('add-cart-item', ['product' => $product])
+                @endif
 
             </div>
 
