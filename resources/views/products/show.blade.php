@@ -39,7 +39,7 @@
 
                         <div class="ml-4">
                             <p class="text-lg font-semibold text-green-600">Se hacen envíos a toda BC</p>
-                            <p>Recibelo el {{ now()->addDay(7)->format('l j F') }}</p>
+                            <p>Recibelo el {{ Date::now()->addDay(7)->locale('es')->format('l j F') }}</p>
                         </div>
                     </div>
                 </div>
