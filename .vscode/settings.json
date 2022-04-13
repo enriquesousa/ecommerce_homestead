@@ -1,11 +1,12 @@
 {
-    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "Monokai",
     "cSpell.language": "en,es",
     "cSpell.words": [
         "carrito",
         "endforeach",
         "fontawesome",
         "imageable",
+        "jetstream",
         "livewire",
         "mobil",
         "polimórfica",
@@ -17,5 +18,7 @@
     ],
     "cSpell.enableFiletypes": [
         "blade"
-    ]
+    ],
+    "workbench.iconTheme": "eq-material-theme-icons",
+    "workbench.preferredLightColorTheme": "Default High Contrast"
 }
