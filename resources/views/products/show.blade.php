@@ -45,15 +45,13 @@
                     </div>
                 </div>
 
-                @livewire('add-cart-item-color', ['product' => $product])
-
-                {{-- @if ($product->subcategory->size)
+                @if ($product->subcategory->size)
                     @livewire('add-cart-item-size', ['product' => $product])
                 @elseif($product->subcategory->color)
                     @livewire('add-cart-item-color', ['product' => $product])
                 @else
                     @livewire('add-cart-item', ['product' => $product])
-                @endif --}}
+                @endif
 
             </div>
 
