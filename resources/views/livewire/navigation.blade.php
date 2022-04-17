@@ -16,6 +16,7 @@
 
         <a href="/" class="mx-4">
             <x-jet-application-mark class="block h-9 w-auto" />
+            {{-- <p class="text-sm text-gray-300">{{ app()->version() }}</p> --}}
         </a>
 
         {{-- Barra de búsqueda --}}
@@ -80,6 +81,11 @@
                         <x-jet-dropdown-link href="{{ route('register') }}">
                             {{ __('Register') }}
                         </x-jet-dropdown-link>
+
+                        <x-jet-dropdown-link href="">
+                            Ver: {{ app()->version() }}
+                        </x-jet-dropdown-link>
+
                     </x-slot>
 
                 </x-jet-dropdown>

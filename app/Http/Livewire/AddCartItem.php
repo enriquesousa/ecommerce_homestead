@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Cart;
 
 class AddCartItem extends Component
 {
@@ -20,6 +21,19 @@ class AddCartItem extends Component
 
     public function increment(){
         $this->qty = $this->qty + 1;
+    }
+
+    public function addItem(){
+
+        // dd($this->product);
+        // dd($this->qty);
+
+        Cart::add([ 'id' => $this->product->id, 
+                    'name' => $this->product->name, 
+                    'quantity' => $this->qty,
+                    'price' => $this->product->price, 
+                    'weight' => 550,
+                ]);
     }
 
     public function render()

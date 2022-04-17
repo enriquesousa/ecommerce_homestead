@@ -39,14 +39,20 @@
             </button> --}}
 
             {{-- botón de tailwind con porps para pasar parámetros--}}
-            <x-botoncolor color="orange" class="w-full">
+            {{-- <x-botoncolor color="orange" class="w-full">
                 Agregar a carrito de compras
-            </x-botoncolor>
+            </x-botoncolor> --}}
 
             {{-- botón customizado --}}
-            {{-- <x-button color="orange" class="w-full">
+            <x-button   color="orange" 
+                        class="w-full" 
+                        wire:click="addItem"
+                        wire:loading.attr="disabled"
+                        wire:target="addItem">
+
                 Agregar a carrito de compras
-            </x-button> --}}
+                
+            </x-button>
 
             {{-- boton de jetstream --}}
             {{-- <x-jet-button class="w-full">

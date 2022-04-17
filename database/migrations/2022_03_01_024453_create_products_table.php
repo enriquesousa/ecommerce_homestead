@@ -21,7 +21,9 @@ return new class extends Migration
             $table->string('name');
 			$table->string('slug');
 			$table->text('description');
-			$table->float('price');
+
+			// $table->float('price');
+            $table->decimal('price',9,2);
 
 			$table->unsignedBigInteger('subcategory_id');
             $table->foreign('subcategory_id')->references('id')->on('subcategories');
