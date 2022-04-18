@@ -17,11 +17,32 @@
         </x-slot>
         
         <x-slot name="content">
-            <div class="py-6 px-4">
-                <p class="text-center text-gray-700">
-                    No tiene agregado ningún item en el carrito 
-                </p>
-            </div>
+
+            <ul>
+
+                @forelse (\Cart::getContent() as $item)
+                    <li class="flex">
+                        {{-- primer imagen del producto --}}
+                        <img class="h-15 w-20 object-cover mr-4" src="{{ $item->attributes->image }}" alt="">
+
+                        {{-- Nombre y Precio del producto --}}
+                        <article class="flex-1">
+                            <h1 class="font-bold">{{ $item->name }}</h1>
+                            <p>Cant: {{ $item->quantity }}</p>
+                            <p>USD {{ $item->price }}</p>
+                        </article>
+                    </li>
+                @empty
+                    {{-- Si la colección esta vaciá --}}
+                    <li class="py-6 px-4">
+                        <p class="text-center text-gray-700">
+                            No tiene agregado ningún item en el carrito 
+                        </p>
+                    </li>
+                @endforelse
+
+            </ul>
+            
         </x-slot>
 
     </x-jet-dropdown>
