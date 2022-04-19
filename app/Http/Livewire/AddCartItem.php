@@ -11,7 +11,11 @@ class AddCartItem extends Component
     public $product; //para recibir la información que nos manda el componente @livewire('add-cart-item', ['product' => $product]) de resources/views/products/show.blade.php
     public $quantity;
     public $qty = 1;
-    public $options = [];
+
+    public $options = [
+        'color_id' => null,
+        'size_id' => null
+    ];
 
     public function mount(){
         $this->quantity = $this->product->quantity;
