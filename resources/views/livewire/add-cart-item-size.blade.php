@@ -54,25 +54,17 @@
         {{-- botón para agregar al carrito --}}
         <div class="flex-1">
 
-            {{-- botón de tailwind --}}
-            {{-- <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded w-full">
-                Agregar a carrito de compras
-            </button> --}}
-
-            {{-- botón de tailwind con porps para pasar parámetros--}}
-            {{-- <x-botoncolor x-bind:disabled="!$wire.quantity" color="orange" class="w-full">
-                Agregar a carrito de compras
-            </x-botoncolor> --}}
-
             {{-- botón customizado --}}
-            <x-button x-bind:disabled="!$wire.quantity" color="orange" class="w-full">
-                Agregar a carrito de compras
-            </x-button>
+            <x-button   x-bind:disabled="!$wire.quantity" 
+                        color="orange" 
+                        class="w-full"
+                        wire:click="addItem"
+                        wire:loading.attr="disabled"
+                        wire:target="addItem">
 
-            {{-- boton de jetstream --}}
-            {{-- <x-jet-button class="w-full">
                 Agregar a carrito de compras
-            </x-jet-button> --}}
+
+            </x-button>
 
         </div>
     </div>

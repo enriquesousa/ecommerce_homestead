@@ -23,6 +23,7 @@
         
         <x-slot name="content">
 
+            {{-- desplegar los productos --}}
             <ul>
                 @forelse (\Cart::getContent() as $item)
                     <li class="flex p-2 border-b border-gray-200">
@@ -37,6 +38,9 @@
                                 {{-- isset se usa para saber si el parámetro esta definido --}}
                                 @isset($item->attributes['color'])
                                     <p class="mx-2">- Color: {{ __($item->attributes['color']) }}</p>
+                                @endisset
+                                @isset($item->attributes['size'])
+                                    <p>{{ $item->attributes['size'] }}</p>
                                 @endisset
                             </div> 
                             <p>USD {{ $item->price }}</p>
