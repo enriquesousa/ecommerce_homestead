@@ -2,7 +2,7 @@
 
 use App\Models\Product;
 use App\Models\Size;
-use Cart;
+use Darryldecode\Cart\Cart;
 
 // Calculamos el stock que tenemos de producto
 function quantity($product_id, $color_id = null, $size_id = null){
