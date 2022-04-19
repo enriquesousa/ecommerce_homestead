@@ -7,11 +7,16 @@
 
                 <x-cart color="white" size="30" />
 
-                {{-- carrito badge indica 99 --}}
-                {{-- <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">99</span> --}}
+                {{-- Me da el total de productos distintos - \Cart::getContent()->count()
+                Me da el total de quantity de productos en el carrito - \Cart::getTotalQuantity() --}}
 
-                {{-- solo el puntito rojo (carrito vacío) --}}
-                <span class="absolute top-0 right-0 inline-block w-2 h-2 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full"></span></span>
+                @if (\Cart::getContent()->count())
+                    {{-- carrito badge indica 99 --}}
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">{{ \Cart::getTotalQuantity() }}</span>
+                @else
+                    {{-- solo el puntito rojo (carrito vacío) --}}
+                    <span class="absolute top-0 right-0 inline-block w-2 h-2 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full"></span></span>    
+                @endif
 
             </span>
         </x-slot>
