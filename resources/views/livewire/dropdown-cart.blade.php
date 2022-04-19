@@ -32,7 +32,13 @@
                         {{-- Nombre y Precio del producto --}}
                         <article class="flex-1">
                             <h1 class="font-bold">{{ $item->name }}</h1>
-                            <p>Cant: {{ $item->quantity }}</p>
+                            <div class="flex">
+                                <p>Cant: {{ $item->quantity }}</p>
+                                {{-- isset se usa para saber si el parámetro esta definido --}}
+                                @isset($item->attributes['color'])
+                                    <p class="mx-2">- Color: {{ __($item->attributes['color']) }}</p>
+                                @endisset
+                            </div> 
                             <p>USD {{ $item->price }}</p>
                         </article>
                     </li>

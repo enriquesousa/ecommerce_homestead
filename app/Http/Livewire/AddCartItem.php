@@ -40,7 +40,7 @@ class AddCartItem extends Component
                 ]);
 
         // para poder tener actualizado el numero de quantity del carrito de compras, vamos a emitir un evento
-        // lo tiene que recivir el componente DropdownCart.php y su vista
+        // lo tiene que recibir el componente DropdownCart.php y su vista
         $this->emitTo('dropdown-cart', 'render');
     }
 
