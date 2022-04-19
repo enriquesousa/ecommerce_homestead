@@ -19,5 +19,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 route::get('borra-carrito', function(){
 
     \Cart::clear();
-
+    
 });

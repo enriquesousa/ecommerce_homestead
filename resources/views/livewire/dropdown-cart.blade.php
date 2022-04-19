@@ -19,9 +19,8 @@
         <x-slot name="content">
 
             <ul>
-
                 @forelse (\Cart::getContent() as $item)
-                    <li class="flex">
+                    <li class="flex p-2 border-b border-gray-200">
                         {{-- primer imagen del producto --}}
                         <img class="h-15 w-20 object-cover mr-4" src="{{ $item->attributes->image }}" alt="">
 
@@ -40,8 +39,24 @@
                         </p>
                     </li>
                 @endforelse
-
             </ul>
+
+            {{-- count carts contents - $cartCollection->count(); --}}
+            @if (\Cart::getContent()->count())
+                <div class="py-2 px-3">
+                    <p class="text-lg text-gray-700 mt-2 mb-3"><span class="font-bold">Total:</span> USD$ {{ \Cart::getTotal() }}</p>
+                    
+                    {{-- <x-button-enlace color="orange" class="w-full">
+                        Ir al carrito de compras
+                    </x-button-enlace> --}}
+
+                    {{-- botón customizado --}}
+                    <x-button color="orange" class="w-full">
+                        Ir al carrito de compras
+                    </x-button>
+
+                </div>
+            @endif
             
         </x-slot>
 
