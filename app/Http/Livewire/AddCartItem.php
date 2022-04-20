@@ -18,7 +18,7 @@ class AddCartItem extends Component
     ];
 
     public function mount(){
-        $this->quantity = $this->product->quantity;
+        $this->quantity = qty_available($this->product->id);
         $this->options['image'] = Storage::url($this->product->images->first()->url);
     }
 
@@ -42,6 +42,12 @@ class AddCartItem extends Component
                     'weight' => 550,
                     'attributes' => $this->options,
                 ]);
+        
+        // para actualizar la propiedad de quantity
+        $this->quantity = qty_available($this->product->id);
+        
+        // reset la propiedad de qty
+        $this->reset('qty');
 
         // para poder tener actualizado el numero de quantity del carrito de compras, vamos a emitir un evento
         // lo tiene que recibir el componente DropdownCart.php y su vista

@@ -34,7 +34,7 @@ class AddCartItemColor extends Component
      */
     public function updatedColorId($value){
         $color = $this->product->colors->find($value);
-        $this->quantity = $color->pivot->quantity;
+        $this->quantity = qty_available($this->product->id, $color->id);
         $this->options['color'] = $color->name;
     }
 
@@ -54,6 +54,12 @@ class AddCartItemColor extends Component
                     'weight' => 550,
                     'attributes' => $this->options,
                 ]);
+
+        // para actualizar la propiedad de quantity
+        $this->quantity = qty_available($this->product->id, $this->color_id);
+
+        // reset la propiedad de qty
+        $this->reset('qty');
 
         // para poder tener actualizado el numero de quantity del carrito de compras, vamos a emitir un evento
         // lo tiene que recibir el componente DropdownCart.php y su vista
