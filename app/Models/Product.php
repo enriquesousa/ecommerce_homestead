@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +16,28 @@ class Product extends Model
     // la propiedad $guarded hace el efecto contrario a $fillable
     // que campos no quiero que asigne a la asignaciones masiva
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    // accesores
+    public function getStockAttribute(){
+
+        if ($this->subcategory->size) {
+            // producto que necesita talla y color
+            return ColorSize::whereHas('size.product', function(Builder $query){
+                                    $query->where('id', $this->id);
+                                })->sum('quantity');
+
+        }elseif($this->subcategory->color) {
+            // producto que necesita color
+            return ColorProduct::whereHas('product', function(Builder $query){
+                $query->where('id', $this->id);
+            })->sum('quantity');
+
+        }else{
+            // producto que solo necesita cantidad
+            return $this->quantity;
+        }
+        
+    }
 
     // relación uno a muchos products y sizes
     public function sizes(){

@@ -10,8 +10,19 @@
         @endforeach
     </select>
 
+    <p class="text-gray-700 my-4">
+        <span class="font-semibold text-lg">Stock disponible: </span>
+        {{-- $quantity va a tener un valor cuando el user le asigne un color --}}
+        @if ($quantity)
+            {{ $quantity }}
+        @else
+            {{-- stock total con todos los colores --}}
+            {{ $product->stock }}
+        @endif
+    </p>
+
     {{-- cantidad y botón para agregar al carrito, incluir x-data en div padre para poder utilizar funcionalidades de alpine --}}
-    <div class="flex items-center mt-4">
+    <div class="flex items-center">
         {{-- cantidad para agregar al carrito --}}
         <div class="mr-4">
             <x-jet-secondary-button 
