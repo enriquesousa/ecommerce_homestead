@@ -8,10 +8,28 @@ use Livewire\Component;
 class Search extends Component
 {
     public $search;
+    public $open = false;
+
+    // mantente a la escucha de la propiedad search
+    public function updatedSearch($value){
+        if ($value) {
+            $this->open = true;
+        }else{
+            $this->open = false;
+        }
+    }
 
     public function render()
     {
-        $products = Product::where('name', 'LIKE', "%" . $this->search . "%")->get();
+
+        if ($this->search) {
+            $products = Product::where('name', 'LIKE', "%" . $this->search . "%")
+                                ->where('status', 2)
+                                ->take(8)
+                                ->get();
+        } else {
+            $products = [];
+        }
 
         return view('livewire.search', compact('products'));
     }

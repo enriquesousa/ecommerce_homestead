@@ -1,4 +1,4 @@
-<div class="flex-1 relative">
+<div class="flex-1 relative" x-data>
 
     <x-jet-input wire:model="search" type="text" class="w-full" placeholder="Estas buscando algún producto?" />
 
@@ -6,7 +6,8 @@
         <x-search size="35" color="white" /> 
     </button>
 
-    <div class="absolute w-full">
+    {{-- panel de resultados de la búsqueda --}}
+    <div class="absolute w-full mt-1 hidden" :class="{ 'hidden' : !$wire.open }" @click.away="$wire.open = false">
         <div class="bg-white rounded-lg shadow mt-1">
             <div class="px-4 py-3 space-y-1">
                 @forelse ($products as $product)
@@ -18,7 +19,9 @@
                         </div>
                     </div>
                 @empty
-                    
+                    <p class="text-lg leading-5">
+                        No existe ningún registro con los parámetros especificados.
+                    </p>
                 @endforelse
             </div>
         </div>
