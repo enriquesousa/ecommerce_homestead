@@ -28,7 +28,8 @@ function qty_added($product_id, $color_id = null, $size_id = null){
 
     $item = $cart->where('id', $product_id)
                 ->where('attributes.color_id', $color_id)   
-                ->where('attributes.size_id', $size_id)->first();
+                ->where('attributes.size_id', $size_id)
+                ->first();
 
     // Si existe un $item en el carrito de compras
     if ($item) {

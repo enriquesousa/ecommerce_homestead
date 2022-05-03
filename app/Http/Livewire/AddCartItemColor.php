@@ -19,6 +19,9 @@ class AddCartItemColor extends Component
         'size_id' => null
     ];
 
+    public $outofstock = false;
+
+
     public function mount(){
         // recuperar la relación de products con colors
         $this->colors = $this->product->colors;
@@ -36,6 +39,7 @@ class AddCartItemColor extends Component
         $color = $this->product->colors->find($value);
         $this->quantity = qty_available($this->product->id, $color->id);
         $this->options['color'] = $color->name;
+        $this->options['color_id'] = $color->id;
     }
 
     public function decrement(){
@@ -57,8 +61,11 @@ class AddCartItemColor extends Component
 
         // para actualizar la propiedad de quantity
         $this->quantity = qty_available($this->product->id, $this->color_id);
+        if ($this->quantity == 0) {
+            $this->outofstock = true;
+        }
 
-        // reset la propiedad de qty
+        // reset la propiedad de qty para los botones + y -
         $this->reset('qty');
 
         // para poder tener actualizado el numero de quantity del carrito de compras, vamos a emitir un evento

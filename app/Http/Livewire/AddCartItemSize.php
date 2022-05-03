@@ -19,6 +19,8 @@ class AddCartItemSize extends Component
     public $colors = [];
     public $options = [];
 
+    public $outofstock = false;
+
     public function mount(){
         $this->sizes = $this->product->sizes;
         $this->options['image'] = Storage::url($this->product->images->first()->url);
@@ -29,6 +31,7 @@ class AddCartItemSize extends Component
         $size = Size::find($value);
         $this->colors = $size->colors;
         $this->options['size'] = $size->name;
+        $this->options['size_id'] = $size->id;
     }
 
     // mantente a la escucha de la propiedad $color_id
@@ -37,6 +40,7 @@ class AddCartItemSize extends Component
         $color = $size->colors->find($value);
         $this->quantity = qty_available($this->product->id, $color->id, $size->id);
         $this->options['color'] = $color->name;
+        $this->options['color_id'] = $color->id;
     }
 
     public function decrement(){
@@ -58,7 +62,10 @@ class AddCartItemSize extends Component
 
         // para actualizar la propiedad de quantity
         $this->quantity = qty_available($this->product->id, $this->color_id, $this->size_id);
-        
+        if ($this->quantity == 0) {
+            $this->outofstock = true;
+        }
+
         // reset la propiedad de qty
         $this->reset('qty');
         

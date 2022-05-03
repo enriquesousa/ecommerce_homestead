@@ -32,8 +32,12 @@
         @if ($quantity)
             {{ $quantity }}
         @else
-            {{-- stock total con todos los productos que tienen color y talla --}}
-            {{ $product->stock }}
+            @if ($outofstock == true)
+                0
+            @else
+                {{-- stock total con todos los productos que tienen color y talla --}}
+                {{ $product->stock }}
+            @endif
         @endif
     </p>
 

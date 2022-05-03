@@ -10,14 +10,17 @@
         @endforeach
     </select>
 
+    {{-- $quantity va a tener un valor cuando el user le asigne un color --}}
     <p class="text-gray-700 my-4">
-        <span class="font-semibold text-lg">Stock disponible: </span>
-        {{-- $quantity va a tener un valor cuando el user le asigne un color --}}
+        <span class="font-semibold text-lg">Stock disponible:</span>
         @if ($quantity)
-            {{ $quantity }}
+            {{$quantity}}
         @else
-            {{-- stock total con todos los colores --}}
-            {{ $product->stock }}
+            @if ($outofstock == true)
+                0
+            @else
+                {{$product->stock}}
+            @endif
         @endif
     </p>
 
