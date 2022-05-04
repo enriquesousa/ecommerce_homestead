@@ -1,10 +1,14 @@
 <div class="flex-1 relative" x-data>
 
-    <x-jet-input wire:model="search" type="text" class="w-full" placeholder="Estas buscando algún producto?" />
+    <form action="{{ route('search') }}" autocomplete="off">
 
-    <button class="absolute top-0 right-0 w-12 h-full bg-orange-500 flex items-center justify-center rounded-r-md">
-        <x-search size="35" color="white" /> 
-    </button>
+        <x-jet-input name="name" wire:model="search" type="text" class="w-full" placeholder="Estas buscando algún producto?" />
+    
+        <button class="absolute top-0 right-0 w-12 h-full bg-orange-500 flex items-center justify-center rounded-r-md">
+            <x-search size="35" color="white" /> 
+        </button>
+
+    </form>
 
     {{-- panel de resultados de la búsqueda --}}
     <div class="absolute w-full mt-1 hidden" :class="{ 'hidden' : !$wire.open }" @click.away="$wire.open = false">
