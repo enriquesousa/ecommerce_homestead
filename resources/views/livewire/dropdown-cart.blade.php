@@ -61,14 +61,31 @@
                 <div class="py-2 px-3">
                     <p class="text-lg text-gray-700 mt-2 mb-3"><span class="font-bold">Total:</span> USD$ {{ \Cart::getTotal() }}</p>
                     
-                    {{-- <x-button-enlace color="orange" class="w-full">
-                        Ir al carrito de compras
+                    {{-- <x-button-enlace  href="{{ route('shopping-cart') }}" color2="yellow" class="w-full">
+                        Ir al carrito de compras 3
                     </x-button-enlace> --}}
 
                     {{-- botón customizado --}}
-                    <x-button color="orange" class="w-full">
+                    {{-- <x-button href="{{ route('shopping-cart') }}" color="orange" class="w-full">
                         Ir al carrito de compras
-                    </x-button>
+                    </x-button> --}}
+                    
+                    {{-- botón x-jet --}}
+                    {{-- <a href="shopping-cart">
+                        <x-jet-button class="w-full"> 
+                            Ir al carrito de compras
+                        </x-jet-button>
+                    </a> --}}
+
+                    {{-- botón de tailwind --}}
+                    {{-- <a href="{{ route('shopping-cart') }}" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded w-full">
+                        Ir al carrito de compras
+                    </a> --}}
+
+                    <x-button-enlace href="{{ route('shopping-cart') }}" color="orange" class="w-full">
+                        Ir al carrito de compras
+                    </x-button-enlace>
+                
 
                 </div>
             @endif
