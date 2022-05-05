@@ -45,7 +45,17 @@
                             </a>
                         </td>
                         
-                        <td></td>
+                        <td>    
+
+                            @if (isset($item->attributes['size']))
+                                @livewire('update-cart-item-size', ['rowId' => $item->id], key($item->id))    
+                            @elseif (isset($item->attributes['color']))
+                                @livewire('update-cart-item-color', ['rowId' => $item->id], key($item->id))
+                            @else
+                                @livewire('update-cart-item', ['rowId' => $item->id], key($item->id))    
+                            @endif
+
+                        </td>
                         
                         <td></td>
                     </tr>
