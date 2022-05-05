@@ -14,8 +14,14 @@
             </thead>
 
             <tbody>
-                @foreach (\Cart::getContent() as $item)
+
+                @php
+                     $cartCollection = \Cart::getContent()->sortBy('name');
+                @endphp
+
+                @foreach ($cartCollection as $item)
                     <tr>
+                        {{-- imagen y nombre --}}
                         <td>
                             <div class="flex">
                                 <img class="h-15 w-20 object-cover mr-4" src="{{ $item->attributes->image }}" alt="">
@@ -38,26 +44,31 @@
                             </div>
                         </td>
 
-                        <td>
+                        {{-- precio y trash icon --}}
+                        <td class="text-center">
                             <span>USD {{ $item->price }}</span>
                             <a class="ml-6 cursor-pointer hover:text-red-600">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
                         
+                        {{-- botones p/increment or decrement quantity --}}
                         <td>    
-
-                            @if (isset($item->attributes['size']))
-                                @livewire('update-cart-item-size', ['rowId' => $item->id], key($item->id))    
-                            @elseif (isset($item->attributes['color']))
-                                @livewire('update-cart-item-color', ['rowId' => $item->id], key($item->id))
-                            @else
-                                @livewire('update-cart-item', ['rowId' => $item->id], key($item->id))    
-                            @endif
-
+                            <div class="flex justify-center">
+                                @if (isset($item->attributes['size']))
+                                    @livewire('update-cart-item-size', ['rowId' => $item->id], key($item->id))    
+                                @elseif (isset($item->attributes['color']))
+                                    @livewire('update-cart-item-color', ['rowId' => $item->id], key($item->id))
+                                @else
+                                    @livewire('update-cart-item', ['rowId' => $item->id], key($item->id))    
+                                @endif
+                            </div>
                         </td>
                         
-                        <td></td>
+                        {{-- Columna de Total --}}
+                        <td class="text-center">
+                            USD {{ $item->price * $item->quantity }}
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
