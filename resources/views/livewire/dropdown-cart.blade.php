@@ -47,7 +47,7 @@
                         </article>
                     </li>
                 @empty
-                    {{-- Si la colección esta vaciá --}}
+                    {{-- Si la colección esta vacía --}}
                     <li class="py-6 px-4">
                         <p class="text-center text-gray-700">
                             No tiene agregado ningún item en el carrito 
@@ -85,8 +85,6 @@
                     <x-button-enlace href="{{ route('shopping-cart') }}" color="orange" class="w-full">
                         Ir al carrito de compras
                     </x-button-enlace>
-                
-
                 </div>
             @endif
             
