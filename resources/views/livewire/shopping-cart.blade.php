@@ -1,4 +1,5 @@
 <div class="container py-8">
+    {{-- tarjeta principal de presentación de productos --}}
     <section class="bg-white rounded-lg shadow-lg p-6 text-gray-700">
         
         <h1 class="text-lg font-semibold mb-6">CARRO DE COMPRAS</h1>
@@ -91,4 +92,26 @@
         @endif
 
     </section>
+
+    {{-- tarjeta que presenta el total de la orden y botón si desea continuar --}}
+    @if (! \Cart::isEmpty())
+        <div class="bg-white rounded-lg shadow-lg px-6 py-4 mt-4">
+            <div class="flex justify-between items-center">
+                {{-- total --}}
+                <div>
+                    <p class="text-gray-700">
+                        <span class="font-bold text-lg">Total:</span>
+                        USD {{ \Cart::getSubTotal() }}
+                    </p>
+                </div>
+
+                {{-- botón para continuar --}}
+                <div>
+                    <x-botoncolor href="#" class="">
+                        Continuar
+                    </x-botoncolor>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
