@@ -110,7 +110,7 @@
 
                 {{-- botón para continuar --}}
                 <div>
-                    <x-botoncolor href="#" class="">
+                    <x-botoncolor href="{{ route('orders.create') }}" class="">
                         Continuar
                     </x-botoncolor>
                 </div>
