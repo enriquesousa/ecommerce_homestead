@@ -49,7 +49,10 @@
                             {{-- precio y trash icon --}}
                             <td class="text-center">
                                 <span>USD {{ $item->price }}</span>
-                                <a class="ml-6 cursor-pointer hover:text-red-600">
+                                <a class="ml-6 cursor-pointer hover:text-red-600" 
+                                        wire:click="delete('{{ $item->id }}')"
+                                        wire:loading.class="text-red-600 opacity-25"
+                                        wire:target="delete('{{ $item->id }}')">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
