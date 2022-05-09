@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Logout;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
+use Cart;
+
 class MergeTheCartLogout
 {
     /**
@@ -26,6 +28,7 @@ class MergeTheCartLogout
      */
     public function handle(Logout $event)
     {
-        //
+        // nuevo registro
+        
     }
 }
