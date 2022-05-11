@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Size;
 use Livewire\Component;
 
-use Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Storage;
 
 class AddCartItemSize extends Component
@@ -54,10 +54,9 @@ class AddCartItemSize extends Component
     public function addItem(){
         Cart::add([ 'id' => $this->product->id, 
                     'name' => $this->product->name, 
-                    'quantity' => $this->qty,
+                    'qty' => $this->qty,
                     'price' => $this->product->price, 
-                    'weight' => 550,
-                    'attributes' => $this->options,
+                    'options' => $this->options,
                 ]);
 
         // para actualizar la propiedad de quantity

@@ -2,6 +2,7 @@
 
 use App\Models\Product;
 use App\Models\Size;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 // Calculamos el stock que tenemos de producto
 function quantity($product_id, $color_id = null, $size_id = null){
@@ -24,16 +25,16 @@ function quantity($product_id, $color_id = null, $size_id = null){
 function qty_added($product_id, $color_id = null, $size_id = null){
 
     // recuperar la colección del contenido del carrito
-    $cart = \Cart::getContent();
+    $cart = Cart::content();
 
     $item = $cart->where('id', $product_id)
-                ->where('attributes.color_id', $color_id)   
-                ->where('attributes.size_id', $size_id)
+                ->where('options.color_id', $color_id)   
+                ->where('options.size_id', $size_id)
                 ->first();
 
     // Si existe un $item en el carrito de compras
     if ($item) {
-        return $item->quantity;
+        return $item->qty;
     }else{
         return 0;
     }

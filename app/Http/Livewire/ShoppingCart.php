@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ShoppingCart extends Component
 {
@@ -13,7 +13,7 @@ class ShoppingCart extends Component
     // Eliminar todos productos en carrito de compras
     public function destroy()
     {
-        Cart::clear();
+        Cart::destroy();
 
         // para que limpie también el DropdownCart 
         $this->emitTo('dropdown-cart', 'render');

@@ -6,7 +6,7 @@ use Illuminate\Auth\Events\Logout;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-use Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class MergeTheCartLogout
 {
@@ -17,7 +17,7 @@ class MergeTheCartLogout
      */
     public function __construct()
     {
-        //
+       //
     }
 
     /**
@@ -28,7 +28,10 @@ class MergeTheCartLogout
      */
     public function handle(Logout $event)
     {
+        // eliminar registro, este método no existe en el paquete hardevine, pero funciona bien si, no se atora si hacemos logout cuando ya anteriormente se habia hecho logout
+        // Cart::erase(auth()->user()->id);
+
         // nuevo registro
-        
+        Cart::store(auth()->user()->id);
     }
 }

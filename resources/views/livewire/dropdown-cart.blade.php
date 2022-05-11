@@ -10,9 +10,9 @@
                 {{-- Me da el total de productos distintos - \Cart::getContent()->count()
                 Me da el total de quantity de productos en el carrito - \Cart::getTotalQuantity() --}}
 
-                @if (\Cart::getContent()->count())
+                @if (Cart::count())
                     {{-- carrito badge indica 99 --}}
-                    <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">{{ \Cart::getTotalQuantity() }}</span>
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">{{ Cart::count() }}</span>
                 @else
                     {{-- solo el puntito rojo (carrito vacío) --}}
                     <span class="absolute top-0 right-0 inline-block w-2 h-2 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full"></span></span>    
@@ -25,22 +25,22 @@
 
             {{-- desplegar los productos --}}
             <ul>
-                @forelse (\Cart::getContent() as $item)
+                @forelse (Cart::content() as $item)
                     <li class="flex p-2 border-b border-gray-200">
                         {{-- primer imagen del producto --}}
-                        <img class="h-15 w-20 object-cover mr-4" src="{{ $item->attributes->image }}" alt="">
+                        <img class="h-15 w-20 object-cover mr-4" src="{{ $item->options->image }}" alt="">
 
                         {{-- Nombre y Precio del producto --}}
                         <article class="flex-1">
                             <h1 class="font-bold">{{ $item->name }}</h1>
                             <div class="flex">
-                                <p>Cant: {{ $item->quantity }}</p>
+                                <p>Cant: {{ $item->qty }}</p>
                                 {{-- isset se usa para saber si el parámetro esta definido --}}
-                                @isset($item->attributes['color'])
-                                    <p class="mx-2">- Color: {{ __($item->attributes['color']) }}</p>
+                                @isset($item->options['color'])
+                                    <p class="mx-2">- Color: {{ __($item->options['color']) }}</p>
                                 @endisset
-                                @isset($item->attributes['size'])
-                                    <p>{{ $item->attributes['size'] }}</p>
+                                @isset($item->options['size'])
+                                    <p>{{ $item->options['size'] }}</p>
                                 @endisset
                             </div> 
                             <p>USD {{ $item->price }}</p>
@@ -57,9 +57,9 @@
             </ul>
 
             {{-- count carts contents - $cartCollection->count(); --}}
-            @if (\Cart::getContent()->count())
+            @if (Cart::count())
                 <div class="py-2 px-3">
-                    <p class="text-lg text-gray-700 mt-2 mb-3"><span class="font-bold">Total:</span> USD$ {{ \Cart::getTotal() }}</p>
+                    <p class="text-lg text-gray-700 mt-2 mb-3"><span class="font-bold">Total:</span> USD$ {{ Cart::subtotal() }}</p>
                     
                     {{-- <x-button-enlace  href="{{ route('shopping-cart') }}" color2="yellow" class="w-full">
                         Ir al carrito de compras 3

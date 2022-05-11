@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Storage;
 
 class AddCartItem extends Component
@@ -32,8 +32,8 @@ class AddCartItem extends Component
 
     public function addItem(){
 
-        // dd($this->product);
-        // dd($this->qty);
+        /* dd($this->product);
+        dd($this->qty);
 
         Cart::add([ 'id' => $this->product->id, 
                     'name' => $this->product->name, 
@@ -41,8 +41,15 @@ class AddCartItem extends Component
                     'price' => $this->product->price, 
                     'weight' => 550,
                     'attributes' => $this->options,
+                ]); */
+
+        Cart::add([ 'id' => $this->product->id, 
+                    'name' => $this->product->name, 
+                    'qty' => $this->qty, 
+                    'price' => $this->product->price, 
+                    'options' => $this->options,
                 ]);
-        
+
         // para actualizar la propiedad de quantity
         $this->quantity = qty_available($this->product->id);
         

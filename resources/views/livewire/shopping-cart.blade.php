@@ -1,10 +1,11 @@
 <div class="container py-8">
+
     {{-- tarjeta principal de presentación de productos --}}
     <section class="bg-white rounded-lg shadow-lg p-6 text-gray-700">
         
         <h1 class="text-lg font-semibold mb-6">CARRO DE COMPRAS</h1>
 
-        @if (! \Cart::isEmpty())
+        @if (Cart::count())
             <table class="table-auto w-full">
                 <thead>
                     <tr>
@@ -17,62 +18,73 @@
 
                 <tbody>
 
-                    @php
+                    {{-- @php
                         $cartCollection = \Cart::getContent()->sortBy('name');
-                    @endphp
+                    @endphp --}}
 
-                    @foreach ($cartCollection as $item)
+                    @foreach (Cart::content() as $item)
                         <tr>
                             {{-- imagen y nombre --}}
-                            <td>
-                                <div class="flex">
-                                    <img class="h-15 w-20 object-cover mr-4" src="{{ $item->attributes->image }}" alt="">
-                                    <div>
-                                        <p class="font-bold">{{ $item->name }}</p>
-                                        @isset($item->attributes['color'])
-                                            <span>
-                                                Color: {{ __($item->attributes['color']) }}
-                                            </span>
-                                            {{-- <p class="mx-2">- Color: {{ __($item->attributes['color']) }}</p> --}}
-                                        @endisset
-                                        @isset($item->attributes['size'])
-                                            <span class="mx-1">-</span>
-                                            <span>
-                                                {{ $item->attributes['size'] }}
-                                            </span>
-                                            {{-- <p>{{ $item->attributes['size'] }}</p> --}}
-                                        @endisset
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10">
+                                        <img class="h-10 w-10 rounded-full object-cover object-center"
+                                            src="{{ $item->options->image }}"
+                                            alt="">
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{$item->name}}
+                                        </div>
+                                        <div class="text-sm text-gray-500">
+                                            @if ($item->options->color)
+                                                <span>
+                                                    Color: {{ __($item->options->color) }}
+                                                </span>    
+                                            @endif
+
+                                            @if ($item->options->size)
+
+                                                <span class="mx-1">-</span>
+
+                                                <span>
+                                                    {{ $item->options->size }}
+                                                </span>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </td>
 
                             {{-- precio y trash icon --}}
-                            <td class="text-center">
-                                <span>USD {{ $item->price }}</span>
-                                <a class="ml-6 cursor-pointer hover:text-red-600" 
-                                        wire:click="delete('{{ $item->id }}')"
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">
+                                    <span>USD {{ $item->price }}</span>
+                                    <a class="ml-6 cursor-pointer hover:text-red-600"
+                                        wire:click="delete('{{$item->rowId}}')"
                                         wire:loading.class="text-red-600 opacity-25"
-                                        wire:target="delete('{{ $item->id }}')">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+                                        wire:target="delete('{{$item->rowId}}')">
+                                        <i class="fas fa-trash"></i>  
+                                    </a>
+                                </div>
                             </td>
                             
                             {{-- botones p/increment or decrement quantity --}}
-                            <td>    
-                                <div class="flex justify-center">
-                                    @if (isset($item->attributes['size']))
-                                        @livewire('update-cart-item-size', ['rowId' => $item->id], key($item->id))    
-                                    @elseif (isset($item->attributes['color']))
-                                        @livewire('update-cart-item-color', ['rowId' => $item->id], key($item->id))
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">
+                                    @if ($item->options->size)
+                                        @livewire('update-cart-item-size', ['rowId' => $item->rowId], key($item->rowId))
+                                    @elseif($item->options->color)
+                                        @livewire('update-cart-item-color', ['rowId' => $item->rowId], key($item->rowId))
                                     @else
-                                        @livewire('update-cart-item', ['rowId' => $item->id], key($item->id))    
+                                        @livewire('update-cart-item', ['rowId' => $item->rowId], key($item->rowId))
                                     @endif
                                 </div>
                             </td>
                             
                             {{-- Columna de Total --}}
                             <td class="text-center">
-                                USD {{ $item->price * $item->quantity }}
+                                USD {{ $item->price * $item->qty }}
                             </td>
                         </tr>
                     @endforeach
@@ -97,24 +109,25 @@
     </section>
 
     {{-- tarjeta que presenta el total de la orden y botón si desea continuar --}}
-    @if (! \Cart::isEmpty())
+    @if (Cart::count())
         <div class="bg-white rounded-lg shadow-lg px-6 py-4 mt-4">
             <div class="flex justify-between items-center">
                 {{-- total --}}
                 <div>
                     <p class="text-gray-700">
                         <span class="font-bold text-lg">Total:</span>
-                        USD {{ \Cart::getSubTotal() }}
+                        USD {{ Cart::subTotal() }}
                     </p>
                 </div>
 
                 {{-- botón para continuar --}}
                 <div>
-                    <x-botoncolor href="{{ route('orders.create') }}" class="">
+                    <x-botoncolor href="{{ route('orders.create') }}" class="" color="orange">
                         Continuar
                     </x-botoncolor>
                 </div>
             </div>
         </div>
     @endif
+
 </div>
