@@ -18,11 +18,13 @@
                     class="w-full"/>
             </div>
 
-            <div>
+            {{-- Envíos --}}
+            <div x-data="{ envio_type: @entangle('envio_type') }">
                 <p class="mt-6 mb-3 text-lg text-gray-700 font-semibold">Envíos</p>
-    
+                
+                {{-- option Recoger en tienda --}}
                 <label class="bg-white rounded-lg shadow px-6 py-4 flex items-center mb-4">
-                    <input type="radio" name="envio" class="text-gray-600">
+                    <input x-model="envio_type" type="radio" value="1" name="envio_type" class="text-gray-600">
                     <span class="ml-2 text-gray-700">
                         Recoger en tienda (Calle falsa 123)
                     </span>
@@ -31,14 +33,16 @@
                     </span>
                 </label>
     
+                {{-- option Envió a domicilio --}}
                 <div class="bg-white rounded-lg shadow">
                     <label class="px-6 py-4 flex items-center">
-                        <input type="radio" name="envio" class="text-gray-600">
+                        <input x-model="envio_type" type="radio" value="2" name="envio_type" class="text-gray-600">
                         <span class="ml-2 text-gray-700">
                             Envió a domicilio
                         </span>
                     </label>
-                    <div class="px-6 pb-6 grid grid-cols-2 gap-6">
+                    {{-- Formulario para que entre detalles de la dirección de envio --}}
+                    <div class="px-6 pb-6 grid grid-cols-2 gap-6 hidden" :class="{ 'hidden': envio_type != 2 }">
 
                         {{-- Departamentos --}}
                         <div>
