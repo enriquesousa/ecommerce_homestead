@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        // por cada producto que creamos quiero 4 imágenes
+        // por cada producto que creamos quiero 4 imágenes, default 250 productos con 4 imágenes cada uno
         Product::factory(250)->create()->each(function (Product $product){
             Image::factory(4)->create([
                 'imageable_id' => $product->id,

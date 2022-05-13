@@ -9,8 +9,12 @@
                     <ul class="slides">
                         @foreach ($product->images as $image)
 
-                            <li data-thumb="{{ Storage::url($image->url) }}">
+                            {{-- <li data-thumb="{{ Storage::url($image->url) }}">
                                 <img src="{{ Storage::url($image->url) }}" />
+                            </li> --}}
+
+                            <li data-thumb="{{ $image->url }}">
+                                <img src="{{ $image->url }}" />
                             </li>
 
                         @endforeach
