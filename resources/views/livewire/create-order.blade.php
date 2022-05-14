@@ -51,11 +51,11 @@
                     {{-- Formulario para que entre detalles de la dirección de envio --}}
                     <div class="px-6 pb-6 grid grid-cols-2 gap-6 hidden" :class="{ 'hidden': envio_type != 2 }">
 
-                        {{-- Departamentos --}}
+                        {{-- Departamentos / Estados --}}
                         <div>
-                            <x-jet-label value="Departamento" />
+                            <x-jet-label value="Estado" />
                             <select class="form-control w-full" wire:model="department_id">
-                                <option value="" disabled selected>Seleccione un departamento</option>
+                                <option value="" disabled selected>Seleccione su estado</option>
                                 @foreach ($departments as $department)
                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
                                 @endforeach
@@ -77,9 +77,9 @@
 
                         {{-- Distritos --}}
                         <div>
-                            <x-jet-label value="Distrito" />
+                            <x-jet-label value="Colonia" />
                             <select class="form-control w-full" wire:model="district_id">
-                                <option value="" disabled selected>Seleccione un distrito</option>
+                                <option value="" disabled selected>Seleccione su colonia</option>
                                 @foreach ($districts as $district)
                                    <option value="{{ $district->id }}">{{ $district->name }}</option>
                                 @endforeach
@@ -169,14 +169,26 @@
                 </p>
                 <p class="flex justify-between items-center">
                     Envió
-                    <span class="font-semibold">Gratis</span>
+                    <span class="font-semibold">
+                        {{-- $value=1 cuando se selecciona Recojo en tienda --}}
+                        @if ($envio_type == 1 || $shipping_cost == 0)
+                            Gratis
+                        @else
+                            {{ $shipping_cost }} USD
+                        @endif
+                    </span>
                 </p>
 
                 <hr class="mt-4 mb-3">
 
                 <p class="flex justify-between items-center font-semibold">
                     <span class="text-lg">Total</span>
-                    {{ Cart::subtotal() }} USD
+                    @if ($envio_type == 1)
+                        {{ Cart::subtotal() }} USD
+                    @else
+                        {{ Cart::subtotal() + $shipping_cost }} USD
+                    @endif
+                    
                 </p>
             </div>
         </div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\City;
 use App\Models\Department;
+use App\Models\District;
 use App\Models\Order;
 use Livewire\Component;
 
@@ -36,6 +38,25 @@ class CreateOrder extends Component
         }
     }
 
+    // Mantenernos a la escucha de la propiedad $department_id (Estado)
+    public function updatedDepartmentId($value){
+        // get la Colección de Ciudades del estado
+        $this->cities = City::where('department_id', $value)->get();
+        $this->reset(['city_id', 'district_id']); // lo encerramos en un array porque queremos reset dos valores
+    }
+
+    // Mantenernos a la escucha de la propiedad $city_id (Ciudad)
+    public function updatedCityId($value){
+        // cargar el costo de envió a esa ciudad
+        $city = City::find($value);
+        $this->shipping_cost = $city->cost;
+        // get la Colección de Colonias de la ciudad
+        $this->districts = District::where('city_id', $value)->get();
+        $this->reset('district_id'); // para que si cambiamos de ciudad se reset esta propiedad
+    }
+
+
+
     public function create_order(){
         $rules = $this->rules;
         if($this->envio_type == 2){
@@ -52,9 +73,18 @@ class CreateOrder extends Component
         $order->contact = $this->contact;
         $order->phone = $this->phone;
         $order->envio_type = $this->envio_type;
-        $order->shipping_cost = $this->shipping_cost;
+        $order->shipping_cost = 0;
         $order->total = $this->shipping_cost + Cart::subtotal();
         $order->content = Cart::content();
+
+        if ($this->envio_type == 2) {
+            $order->shipping_cost = $this->shipping_cost;
+            $order->department_id = $this->department_id;
+            $order->city_id = $this->city_id;
+            $order->district_id = $this->district_id;
+            $order->address = $this->address;
+            $order->references = $this->references;
+        }
 
         // crear un nuevo registro en la tabla orders
         $order->save();
