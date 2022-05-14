@@ -991,6 +991,9 @@ select {
 .bottom-0 {
   bottom: 0px;
 }
+.right-auto {
+  right: auto;
+}
 .z-0 {
   z-index: 0;
 }
