@@ -2,6 +2,7 @@
     
     <x-jet-dropdown width="96">
         
+        {{-- Desplegar en header --}}
         <x-slot name="trigger">
             <span class="relative inline-block cursor-pointer">
 

@@ -23,6 +23,16 @@ class CreateOrder extends Component
         $this->departments = Department::all();
     }
 
+    // Mantenernos a la escucha de la propiedad $envio_type
+    public function updatedEnvioType($value){
+        // $value=1 cuando se selecciona Recojo en tienda, reset mensajes de error (si hay) de la parte de envió a domicilio
+        if ($value == 1) {
+            $this->resetValidation([
+                'department_id', 'city_id', 'district_id', 'address', 'references'
+            ]);
+        }
+    }
+
     public function create_order(){
         $rules = $this->rules;
         if($this->envio_type == 2){
