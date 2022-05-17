@@ -19,6 +19,15 @@
 
             $products[] = $item;
         }
+
+        // Redije al usuario cuando ya realizo el pago
+        $preference->back_urls = array(
+            "success" => "https://www.tu-sitio/success",
+            "failure" => "http://www.tu-sitio/failure",
+            "pending" => "http://www.tu-sitio/pending"
+        );
+        $preference->auto_return = "approved";
+
         $preference->items = $products;
         $preference->save();
 
