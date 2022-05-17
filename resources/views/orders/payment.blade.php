@@ -1,4 +1,29 @@
 <x-app-layout>
+
+    @php
+        // SDK de Mercado Pago
+        require base_path('vendor/autoload.php');
+        // Agrega credenciales
+        MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
+
+        // Crea un objeto de preferencia
+        $preference = new MercadoPago\Preference();
+
+        // Crea un ítem en la preferencia
+        foreach ($items as $product) {
+            
+            $item = new MercadoPago\Item();
+            $item->title = $product->name;
+            $item->quantity = $product->qty;
+            $item->unit_price = $product->price;
+
+            $products[] = $item;
+        }
+        $preference->items = $products;
+        $preference->save();
+
+    @endphp
+
     <div class="container py-4">
 
         {{-- Tarjeta 1 - Numero de Orden --}}
@@ -107,8 +132,36 @@
                 <p class="text-lg font-semibold uppercase">
                     Pago: {{ $order->total }} USD
                 </p>
+                {{-- botón de mercado pago  --}}
+                <div class="cho-container">
+
+                </div>
+
             </div>
         </div>
 
     </div>
+
+    {{-- Add the MercadoPago SDK.js/v2 --}}
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    {{-- Script para botón PAGAR de Marcado Pago --}}
+    <script>
+        // Agregar credenciales SDK
+        const mp = new MercadoPago("{{ config('services.mercadopago.key') }}", {
+            locale: 'pt-BR'
+        });
+
+        // Inicializa el checkout
+        const checkout = mp.checkout({
+        preference: {
+            id: '{{ $preference->id }}' // Enter the preference ID
+        },
+        render: {
+            container: '.cho-container', // CSS class to render the payment button
+            label: 'Pagar', // Change payment button text (optional)
+            }
+        });
+    </script>       
+
 </x-app-layout>

@@ -1,6 +1,14 @@
+{{-- Por lo pronto ponemos el código css de id="navigation-menu" etiqueta nav, aquí. Calculamos la altura de la ventana de nav 100% de altura menos los 4 rem de Barra de Menu del Header--}}
+{{-- <style>
+    #navigation-menu{
+        height: calc(100vh - 4rem);
+    }
+</style> --}}
+
 {{-- barra de navegación principal, para que quede pegada al top usamos sticky top-0 --}}
 <header class="bg-gray-600 sticky top-0 z-50" x-data="dropdown()">
 
+    {{-- Barra de Menu del Header  --}}
     <div class="container flex items-center h-16 justify-between md:justify-start">
 
         {{-- botón de menu categorías --}}
@@ -103,7 +111,7 @@
     {{-- menu --}}
     <nav id="navigation-menu" x-cloak x-show="open" class="bg-gray-700 bg-opacity-25 w-full absolute">
         
-        {{-- menu para la computadora --}}
+        {{-- menu para la resolución computadora --}}
         <div class="container h-full hidden md:block">
             <div x-on:click.away="close()" class="grid grid-cols-4 h-full relative">
 
@@ -129,8 +137,8 @@
                         </li>
                     @endforeach
                 </ul>
-                {{-- Este div ocupa 3 columnas --}}
 
+                {{-- Este div ocupa 3 columnas --}}
                 <div class="col-span-3 bg-gray-100">
 
                     {{-- con : antes de la variable le decimos que lo que queremos pasar es un objeto --}}
@@ -142,7 +150,7 @@
             </div>
         </div>
 
-        {{-- menu para el celular --}}
+        {{-- menu para el resolución celular --}}
         <div class="bg-white h-full overflow-y-auto">
 
             <div class="container bg-gray-200 py-3 mb-2">

@@ -1,5 +1,7 @@
 <div wire:init="loadPosts">
-    
+
+    {{-- {{ Debugbar::info($products) }} --}}
+
     @if (count($products))
         <div class="glider-contain">
 
