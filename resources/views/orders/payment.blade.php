@@ -9,6 +9,13 @@
         // Crea un objeto de preferencia
         $preference = new MercadoPago\Preference();
 
+        $shipments = new MercadoPago\Shipments();
+        $shipments->cost = $order->shipping_cost;
+        $shipments->mode = "not_specified";
+
+        // agregar $shipments a nuestro objeto $preference
+        $preference->shipments = $shipments;
+
         // Crea un ítem en la preferencia
         foreach ($items as $product) {
             
