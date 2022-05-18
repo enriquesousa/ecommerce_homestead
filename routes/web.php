@@ -21,6 +21,9 @@ Route::get('orders/create', CreateOrder::class)->middleware('auth')->name('order
 Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 Route::get('orders/{order}/payment', [OrderController::class, 'payment'])->name('orders.payment');
 
+// Por lo mientras que estamos en desarrollo utilizaremos esta ruta
+Route::get('orders/{order}/pay', [OrderController::class, 'pay'])->name('orders.pay');
+
 Route::post('webhooks', WebhooksController::class);
 
 
