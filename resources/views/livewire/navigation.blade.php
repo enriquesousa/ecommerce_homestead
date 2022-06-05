@@ -91,7 +91,7 @@
                         </x-jet-dropdown-link>
 
                         <x-jet-dropdown-link href="">
-                            Ver: {{ app()->version() }}
+                            Ver: {{ app()->version() }} - PerProject
                         </x-jet-dropdown-link>
 
                     </x-slot>

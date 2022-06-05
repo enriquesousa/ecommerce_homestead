@@ -26,9 +26,11 @@ class OrderController extends Controller
         // return $request->all();
 
         $payment_id = $request->get('payment_id'); // recuperar solo el payment_id
+        // return $payment_id;
 
         // pedir el estatus de la orden a mercado pago
         $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-4651741262134650-051500-e2b1466eaa741346c683c5b8151da145-1124005997");
+        // return $response;
 
         $response = json_decode($response);
         // dump($response);
