@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Livewire\ShoppingCart;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Controllers\WebhooksController;
+use App\Http\Livewire\PaymentOrder;
 
 Route::get('/', WelcomeController::class);
 Route::get('search', SearchController::class)->name('search');
@@ -19,7 +20,7 @@ Route::get('shopping-cart', ShoppingCart::class)->name('shopping-cart');
 Route::get('orders/create', CreateOrder::class)->middleware('auth')->name('orders.create');
 
 Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
-Route::get('orders/{order}/payment', [OrderController::class, 'payment'])->name('orders.payment');
+Route::get('orders/{order}/payment', PaymentOrder::class)->name('orders.payment');
 
 // Por lo mientras que estamos en desarrollo utilizaremos esta ruta
 Route::get('orders/{order}/pay', [OrderController::class, 'pay'])->name('orders.pay');
