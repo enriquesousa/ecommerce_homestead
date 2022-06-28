@@ -100,9 +100,9 @@
 
         <div class="col-span-2">
 
-            <div class="bg-white rounded-lg shadow-lg p-6 text-gray-700">
+            <div class="bg-white rounded-lg shadow-lg px-6 pt-6 text-gray-700">
                 {{-- Tarjeta 4 - Imagen Visa Master Card y botón de Pagar! --}}
-                <div class="flex justify-between items-center">
+                <div class="flex justify-between items-center mb-4">
                     {{-- lo que hace asset() es colocarnos en la carpeta pubic --}}
                     <img class="h-8" src="{{ asset('img/MC_VI_DI_2-1.jpg') }}" alt="">
                     <div class="text-gray-700" style="text-align: right">
@@ -126,9 +126,41 @@
                 </div>
             </div>
 
+            {{-- botón para paypal --}}
+            <div id="paypal-button-container"></div>
+
         </div>
 
     </div>
     
+    <script src="https://www.paypal.com/sdk/js?client-id={{ config('services.paypal.client_id') }}"></script>
+
+    <script>
+        paypal.Buttons({
+          // Sets up the transaction when a payment button is clicked
+          createOrder: (data, actions) => {
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: '77.44' // Can also reference a variable or function
+                }
+              }]
+            });
+          },
+          // Finalize the transaction after payer approval
+          onApprove: (data, actions) => {
+            return actions.order.capture().then(function(orderData) {
+              // Successful capture! For dev/demo purposes:
+              console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+              const transaction = orderData.purchase_units[0].payments.captures[0];
+              alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+              // When ready to go live, remove the alert and show a success message within this page. For example:
+              // const element = document.getElementById('paypal-button-container');
+              // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+              // Or go to another URL:  actions.redirect('thank_you.html');
+            });
+          }
+        }).render('#paypal-button-container');
+      </script>
 
 </x-app-layout>

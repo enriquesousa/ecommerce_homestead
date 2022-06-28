@@ -6,7 +6,7 @@
 </style> --}}
 
 {{-- barra de navegación principal, para que quede pegada al top usamos sticky top-0 --}}
-<header class="bg-gray-600 sticky top-0 z-50" x-data="dropdown()">
+<header class="bg-gray-600 sticky top-0" style="z-index: 900" x-data="dropdown()">
 
     {{-- Barra de Menu del Header  --}}
     <div class="container flex items-center h-16 justify-between md:justify-start">
