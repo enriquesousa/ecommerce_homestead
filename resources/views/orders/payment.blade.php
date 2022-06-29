@@ -1,3 +1,5 @@
+{{-- Esta Vista la pasamos a resources/views/livewire/payment-order.blade.php--}}
+
 <x-app-layout>
 
     {{-- payment.blade.php para mercado PayPal --}}

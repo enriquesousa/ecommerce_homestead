@@ -11,13 +11,14 @@ class OrderController extends Controller
 {
 
     public function show(Order $order){
-        return view('orders.show', compact('order'));
+        $items = json_decode($order->content); // Convertir el string en objeto json
+        return view('orders.show', compact('order', 'items'));
     }
 
-    public function payment(Order $order){
-        $items = json_decode($order->content); // Convertir el string en objeto json
-        return view('orders.payment', compact('order', 'items'));
-    }
+    // public function payment(Order $order){
+    //     $items = json_decode($order->content); // Convertir el string en objeto json
+    //     return view('orders.payment', compact('order', 'items'));
+    // }
 
     // todo este método lo tenemos que copiar a webhooks __invoke() cuando ya estemos en producción
     public function pay(Order $order, Request $request){
