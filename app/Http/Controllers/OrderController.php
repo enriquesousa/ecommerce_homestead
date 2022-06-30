@@ -11,8 +11,14 @@ class OrderController extends Controller
 {
 
     public function show(Order $order){
+
+        // proteger la vista con la policy de author ver app/Policies/OrderPolicy.php
+        $this->authorize('author', $order);
+
+
         $items = json_decode($order->content); // Convertir el string en objeto json
         return view('orders.show', compact('order', 'items'));
+
     }
 
     // public function payment(Order $order){
@@ -26,6 +32,9 @@ class OrderController extends Controller
         // regresar todo lo que nos estén enviando por la url
         // return $request->all();
 
+        // proteger la vista con la policy de author ver app/Policies/OrderPolicy.php
+        $this->authorize('author', $order);
+        
         $payment_id = $request->get('payment_id'); // recuperar solo el payment_id
         // return $payment_id;
 
