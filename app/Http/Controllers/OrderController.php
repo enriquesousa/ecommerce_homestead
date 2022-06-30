@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Http;
 class OrderController extends Controller
 {
 
+    public function index()
+    {
+        $orders = Order::all();
+        return view('orders.index', compact('orders'));
+    }
+
     public function show(Order $order){
 
         // proteger la vista con la policy de author ver app/Policies/OrderPolicy.php
