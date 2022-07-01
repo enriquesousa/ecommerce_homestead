@@ -49,9 +49,18 @@
 
 
         {{-- Tarjeta 1 - Numero de Orden --}}
-        <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6">
-            <p class="text-gray-700 uppercase"><span class="font-semibold">Número de order:</span>
-                Orden-{{ $order->id }}</p>
+        <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6 flex items-center">
+            <p class="text-gray-700 uppercase">
+                <span class="font-semibold">Número de order:</span>
+                Orden-{{ $order->id }}
+            </p>
+
+            @if ($order->status == 1)
+                <x-button-enlace class="ml-auto" href="{{ route('orders.payment', $order) }}">
+                    Ir a pagar
+                </x-button-enlace>
+            @endif
+
         </div>
 
         {{-- Tarjeta 2 - Dirección de envió y Datos del Contacto --}}
