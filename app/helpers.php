@@ -47,6 +47,38 @@ function qty_available($product_id, $color_id = null, $size_id = null){
 
 }
 
+// función para descontar el stock del producto en la base de datos
+function discount($item){
+    $product = Product::find($item->id);
+    $qty_available = qty_available($item->id, $item->options->color_id, $item->options->size_id);
+   
+    if ($item->options->size_id) {
+
+        $size = Size::find($item->options->size_id);
+        // eliminar registro de la tabla intermedia
+        $size->colors()->detach($item->options->color_id);
+        // Volver a crearlo
+        $size->colors()->attach([
+            $item->options->color_id => ['quantity' => $qty_available]
+        ]);
+
+    }elseif($item->options->color_id){
+
+        // eliminar registro de la tabla intermedia
+        $product->colors()->detach($item->options->color_id);
+        // Volver a crearlo
+        $product->colors()->attach([
+            $item->options->color_id => ['quantity' => $qty_available]
+        ]);
+
+    }else{
+
+        $product->quantity = $qty_available;
+        $product->save();
+    } 
+}
+
+
 
 
 

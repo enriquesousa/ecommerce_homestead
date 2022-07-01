@@ -89,6 +89,12 @@ class CreateOrder extends Component
         // crear un nuevo registro en la tabla orders
         $order->save();
 
+        foreach (Cart::content() as $item) {
+            // mandamos llamar al helper para que nos descuente el item en la base de datos
+            discount($item);
+        }
+
+
         // Limpiar el carrito de compra
         Cart::destroy();
 
