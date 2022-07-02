@@ -79,6 +79,36 @@ function discount($item){
 }
 
 
+// función para incrementar el stock en la base de datos, para anular pedido que no se completo su pago
+function increase($item){
+    $product = Product::find($item->id);
+    $quantity = quantity($item->id, $item->options->color_id, $item->options->size_id) + $item->qty;
+   
+    if ($item->options->size_id) {
+
+        $size = Size::find($item->options->size_id);
+        // eliminar registro de la tabla intermedia
+        $size->colors()->detach($item->options->color_id);
+        // Volver a crearlo
+        $size->colors()->attach([
+            $item->options->color_id => ['quantity' => $quantity]
+        ]);
+
+    }elseif($item->options->color_id){
+
+        // eliminar registro de la tabla intermedia
+        $product->colors()->detach($item->options->color_id);
+        // Volver a crearlo
+        $product->colors()->attach([
+            $item->options->color_id => ['quantity' => $quantity]
+        ]);
+
+    }else{
+
+        $product->quantity = $quantity;
+        $product->save();
+    } 
+}
 
 
 

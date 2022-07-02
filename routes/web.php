@@ -12,6 +12,9 @@ use App\Http\Livewire\CreateOrder;
 use App\Http\Controllers\WebhooksController;
 use App\Http\Livewire\PaymentOrder;
 
+use App\Models\Order;
+use Illuminate\Support\Carbon;
+
 Route::get('/', WelcomeController::class);
 Route::get('search', SearchController::class)->name('search');
 Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
@@ -28,6 +31,27 @@ Route::middleware(['auth'])->group(function(){
     // Por lo mientras que estamos en desarrollo utilizaremos esta ruta
     Route::get('orders/{order}/pay', [OrderController::class, 'pay'])->name('orders.pay');
     Route::post('webhooks', WebhooksController::class);
+
+});
+
+Route::get('prueba', function(){
+    // que hora era hace 10 minutos, usar carbon
+    $hora = now()->subMinutes(10);
+    // echo $hora->toDateTimeString();
+    // $current_date_time=Carbon::now();
+
+    $orders = Order::where('status', 1)->whereTime('created_at', '<=', $hora)->get();
+
+    foreach ($orders as $order) {
+        $items = json_decode($order->content);
+        foreach ($items as $item) {
+            increase($item); // llamar al helper
+        }
+        $order->status = 5; // anulado
+        $order->save();
+    }
+
+    return "Se anulo el pedido";
 
 });
 
