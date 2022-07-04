@@ -1,0 +1,49 @@
+{
+    "workbench.colorTheme": "Atom Material Theme",
+    "cSpell.language": "en,es",
+    "cSpell.words": [
+        "accesores",
+        "carrito",
+        "customizado",
+        "Darryldecode",
+        "endforeach",
+        "endforelse",
+        "endisset",
+        "fontawesome",
+        "forelse",
+        "Gloudemans",
+        "imageable",
+        "isset",
+        "jetstream",
+        "livewire",
+        "mercadopago",
+        "mobil",
+        "outofstock",
+        "paypal",
+        "polimórfica",
+        "Recibelo",
+        "semibold",
+        "Shoppingcart",
+        "stylesheet",
+        "Subcategoría",
+        "Subcategorías"
+    ],
+    "cSpell.enableFiletypes": [
+        "blade"
+    ],
+    "workbench.iconTheme": "eq-material-theme-icons",
+    "workbench.preferredLightColorTheme": "Default High Contrast",
+
+    // para eliminar los errorres de sintaxis que me da inteliphense, usar en conjunto con composer require --dev barryvdh/laravel-ide-helper
+    // ver https://stackoverflow.com/questions/70165699/undefined-type-request-intelephense1009
+    "intelephense.telemetry.enabled": false,
+    "intelephense.completion.triggerParameterHints": true,
+    "intelephense.completion.insertUseDeclaration": true,
+    "intelephense.trace.server": "messages",
+    "intelephense.diagnostics.undefinedClassConstants": false,
+    "intelephense.diagnostics.undefinedFunctions": false,
+    "intelephense.diagnostics.undefinedConstants": false,
+    "intelephense.diagnostics.undefinedProperties": false,
+    "intelephense.diagnostics.undefinedTypes": false,
+    "intelephense.diagnostics.undefinedMethods": false
+}

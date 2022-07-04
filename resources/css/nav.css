@@ -1,0 +1,11 @@
+#navigation-menu{
+    height: calc(100vh - 4rem);
+}
+
+/* para desplegar el submenu */
+.navigation-link:hover .navigation-submenu {
+    display: block !important;
+}
+
+[x-cloak] { display: none !important; }
+

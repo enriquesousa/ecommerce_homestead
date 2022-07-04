@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use Livewire\Component;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Storage;
+
+class AddCartItem extends Component
+{
+    public $product; //para recibir la información que nos manda el componente @livewire('add-cart-item', ['product' => $product]) de resources/views/products/show.blade.php
+    public $quantity;
+    public $qty = 1;
+
+    public $options = [
+        'color_id' => null,
+        'size_id' => null
+    ];
+
+    public function mount(){
+        $this->quantity = qty_available($this->product->id);
+        // $this->options['image'] = Storage::url($this->product->images->first()->url);
+        $this->options['image'] = $this->product->images->first()->url;
+    }
+
+    public function decrement(){
+        $this->qty = $this->qty - 1;
+    }
+
+    public function increment(){
+        $this->qty = $this->qty + 1;
+    }
+
+    public function addItem(){
+
+        // dd($this->product);
+        // dd($this->options);
+        // dd($this->qty);
+
+        // Cart::add([ 'id' => $this->product->id, 
+        //             'name' => $this->product->name, 
+        //             'quantity' => $this->qty,
+        //             'price' => $this->product->price, 
+        //             'weight' => 550,
+        //             'attributes' => $this->options,
+        //         ]);
+
+        Cart::add([ 'id' => $this->product->id, 
+                    'name' => $this->product->name, 
+                    'qty' => $this->qty, 
+                    'price' => $this->product->price, 
+                    'options' => $this->options,
+                ]);
+
+        // para actualizar la propiedad de quantity
+        $this->quantity = qty_available($this->product->id);
+        
+        // reset la propiedad de qty
+        $this->reset('qty');
+
+        // para poder tener actualizado el numero de quantity del carrito de compras, vamos a emitir un evento
+        // lo tiene que recibir el componente DropdownCart.php y su vista
+        $this->emitTo('dropdown-cart', 'render');
+    }
+
+    public function render()
+    {
+        return view('livewire.add-cart-item');
+    }
+}
