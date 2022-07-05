@@ -37,6 +37,14 @@ class ProductFactory extends Factory
             $quantity = 15;
         }
 
+        if ($subcategory->color) {
+            $name = "Con Color";
+        }
+
+        if ($subcategory->size) {
+            $name = "Con Color y Size";
+        }
+
         return [
             'name' => $name,
             'slug' => Str::slug($name),
