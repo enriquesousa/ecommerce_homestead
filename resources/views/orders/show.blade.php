@@ -15,7 +15,6 @@
                     <p>Recibido</p>
                 </div>
             </div>
-            
 
             {{-- linea de separación --}}
             <div class="{{ ($order->status >= 3 && $order->status != 5) ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2"></div>

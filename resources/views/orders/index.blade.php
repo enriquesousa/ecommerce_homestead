@@ -5,7 +5,7 @@
         {{-- Estatus de pedidos, en 5 tarjetas de colores --}}
         <section class="grid grid-cols-5 gap-6 text-white">
             
-            {{-- columna 1 --}}
+            {{-- columna 1 pendiente --}}
             <a href="{{ route('orders.index') . "?status=1" }}" class="bg-red-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
                 <p class="text-center text-2xl">
                     {{ $pendiente }}
@@ -16,7 +16,7 @@
                 </p>
             </a>
 
-            {{-- columna 2 --}}
+            {{-- columna 2 recibido --}}
             <a href="{{ route('orders.index') . "?status=2" }}" class="bg-gray-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
                 <p class="text-center text-2xl">
                     {{ $recibido }}
@@ -27,7 +27,7 @@
                 </p>
             </a>
 
-            {{-- columna 3 --}}
+            {{-- columna 3 enviado --}}
             <a href="{{ route('orders.index') . "?status=3" }}" class="bg-yellow-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
                 <p class="text-center text-2xl">
                     {{ $enviado }}
@@ -38,7 +38,7 @@
                 </p>
             </a>
 
-            {{-- columna 4 --}}
+            {{-- columna 4 entregado --}}
             <a href="{{ route('orders.index') . "?status=4" }}" class="bg-pink-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
                 <p class="text-center text-2xl">
                     {{ $entregado }}
@@ -49,7 +49,7 @@
                 </p>
             </a>
 
-            {{-- columna 5 --}}
+            {{-- columna 5 anulado --}}
             <a href="{{ route('orders.index') . "?status=5" }}" class="bg-green-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
                 <p class="text-center text-2xl">
                     {{ $anulado }}

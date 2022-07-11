@@ -11,6 +11,7 @@ class Search extends Component
     public $open = false;
 
     // mantente a la escucha de la propiedad search
+    // al precedír el nombre de la propiedad con updated nos mantenemos a la escucha de la propiedad
     public function updatedSearch($value){
         if ($value) {
             $this->open = true;

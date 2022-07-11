@@ -12,6 +12,7 @@
             @endforelse
         </ul>
 
+        {{-- links de pagination --}}
         <div class="mt-4">
             {{ $products->links() }}
         </div>

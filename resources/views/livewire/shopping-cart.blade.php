@@ -27,8 +27,9 @@
                             {{-- imagen y nombre --}}
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full object-cover object-center"
+                                    <div class="flex-shrink-0">
+                                        {{-- le quite rounded-full --}}
+                                        <img class="h-15 w-20 object-cover object-center"
                                             src="{{ $item->options->image }}"
                                             alt="">
                                     </div>
@@ -44,9 +45,7 @@
                                             @endif
 
                                             @if ($item->options->size)
-
                                                 <span class="mx-1">-</span>
-
                                                 <span>
                                                     {{ $item->options->size }}
                                                 </span>

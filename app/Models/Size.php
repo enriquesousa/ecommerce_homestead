@@ -11,7 +11,7 @@ class Size extends Model
 
     protected $fillable = ['name', 'product_id'];
 
-    // relación uno a muchos inversa entre sizes y colors 
+    // relación uno a muchos inversa entre sizes y products 
     public function product(){
         return $this->belongsTo(Product::class);
     }

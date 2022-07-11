@@ -14,11 +14,13 @@
     <p class="text-gray-700 my-4">
         <span class="font-semibold text-lg">Stock disponible:</span>
         @if ($quantity)
+            {{-- Despliega solo la cantidad del color que se haya seleccionado  --}}
             {{$quantity}}
         @else
             @if ($outofstock == true)
                 0
             @else
+                {{-- Despliega el total de productos de todos los colores  --}}
                 {{$product->stock}}
             @endif
         @endif

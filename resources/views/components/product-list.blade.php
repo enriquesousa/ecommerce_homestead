@@ -1,3 +1,4 @@
+{{-- con props especificamos que la información que le vamos a pasar al componente de blade es product --}}
 @props(['product'])
 
 <li class="bg-white rounded-lg shadow mb-4">

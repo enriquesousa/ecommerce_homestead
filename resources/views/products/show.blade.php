@@ -4,7 +4,6 @@
 
             {{-- Columna 1 donde están las fotos con el flex slider--}}
             <div>
-
                 <div class="flexslider">
                     <ul class="slides">
                         @foreach ($product->images as $image)
@@ -20,17 +19,22 @@
                         @endforeach
                     </ul>
                 </div>
-
             </div>
 
             {{-- Columna 2 donde están datos --}}
             <div>
                 <h1 class="text-xl font-bold text-gray-700">{{ $product->name }}</h1>
 
+                {{-- Nombre, marca, estrellas, reseñas, categoría y Subcategoría --}}
                 <div class="flex">
-                    <p class="text-gray-700">Marca: <a class="underline capitalize hover:text-orange-500" href="">{{ $product->brand->name }}</a></p>
+                    <p class="text-green-700">Marca: <a class="underline text-gray-700 capitalize hover:text-orange-500" href="">{{ $product->brand->name }}</a></p>
                     <p class="text-gray-700 mx-6">5 <i class="fas fa-star text-sm text-yellow-400"></i></p>
                     <a class="text-orange-500 hover:text-orange-600 underline" href="">39 reseñas</a>
+                </div>
+
+                <div class="flex">
+                    <p class="text-green-700">Categoría: <a class="text-gray-700 capitalize hover:text-orange-500" href="">{{ $product->subcategory->category->name }}</a></p>
+                    <p class="text-green-700 mx-6">SubCategoría: <a class="text-gray-700 capitalize hover:text-orange-500" href="">{{ $product->subcategory->name }}</a></p>
                 </div>
 
                 <p class="text-2xl font-semibold text-gray-700 my-4">USD$ {{ $product->price }}</p>

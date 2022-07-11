@@ -4,7 +4,7 @@ use App\Models\Product;
 use App\Models\Size;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
-// Calculamos el stock que tenemos de producto
+// Calculamos el stock que tenemos de producto en la base de datos
 function quantity($product_id, $color_id = null, $size_id = null){
 
     $product = Product::find($product_id);
@@ -21,7 +21,7 @@ function quantity($product_id, $color_id = null, $size_id = null){
     return $quantity;
 }
 
-// Con esto calculamos la cantidad de items agregados
+// Con esto calculamos la cantidad de items agregados al carrito de compras
 function qty_added($product_id, $color_id = null, $size_id = null){
 
     // recuperar la colección del contenido del carrito
@@ -40,6 +40,7 @@ function qty_added($product_id, $color_id = null, $size_id = null){
     }
 }
 
+// La resta de ambos
 // Calcular ahora la cantidad de items que aun podemos agregar a nuestro carrito de compras.
 function qty_available($product_id, $color_id = null, $size_id = null){
 
@@ -77,7 +78,6 @@ function discount($item){
         $product->save();
     } 
 }
-
 
 // función para incrementar el stock en la base de datos, para anular pedido que no se completo su pago
 function increase($item){
